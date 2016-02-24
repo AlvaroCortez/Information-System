@@ -69,4 +69,15 @@ public class Order {
     public void setOrderAmount(Integer orderAmount) {
         this.orderAmount = orderAmount;
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderId=" + orderId +
+                //", customer=" + customer.toString() +
+                ", dateOfOrder=" + dateOfOrder +
+                ", numberOfProducts=" + numberOfProducts +
+                ", orderAmount=" + orderAmount +
+                '}';
+    }
 }

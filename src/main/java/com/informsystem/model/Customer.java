@@ -96,4 +96,17 @@ public class Customer {
     public void setSex(char sex) {
         this.sex = sex;
     }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "customerId=" + customerId +
+                //", orders=" + orders +
+                //", restaurants=" + restaurants +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", age=" + age +
+                ", sex=" + sex +
+                '}';
+    }
 }

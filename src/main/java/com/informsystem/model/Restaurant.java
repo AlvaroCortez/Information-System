@@ -85,4 +85,16 @@ public class Restaurant {
     public void setKitchenType(String kitchenType) {
         this.kitchenType = kitchenType;
     }
+
+    @Override
+    public String toString() {
+        return "Restaurant{" +
+                "restaurantId=" + restaurantId +
+                //", customers=" + customers +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", rating=" + rating +
+                ", kitchenType='" + kitchenType + '\'' +
+                '}';
+    }
 }

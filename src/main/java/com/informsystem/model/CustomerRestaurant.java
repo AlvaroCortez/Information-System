@@ -43,4 +43,13 @@ public class CustomerRestaurant {
     public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
     }
+
+    @Override
+    public String toString() {
+        return "CustomerRestaurant{" +
+                "customerRestaurantId=" + customerRestaurantId +
+                ", customer=" + customer.toString() +
+                ", restaurant=" + restaurant.toString() +
+                '}';
+    }
 }
