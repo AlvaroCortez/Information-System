@@ -22,12 +22,6 @@ public class Customer {
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Order> orders = new ArrayList<Order>();
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "CUSTOMER_RESTAURANT",
-    joinColumns = @JoinColumn(name = "CUSTOMER_ID"),
-    inverseJoinColumns = @JoinColumn(name = "RESTAURANT_ID"))
-    private List<Restaurant> restaurants = new ArrayList<Restaurant>();
-
     @Column(name = "NAME")
     private String name;
 
@@ -55,14 +49,6 @@ public class Customer {
 
     public void setOrders(List<Order> orders) {
         this.orders = orders;
-    }
-
-    public List<Restaurant> getRestaurants() {
-        return restaurants;
-    }
-
-    public void setRestaurants(List<Restaurant> restaurants) {
-        this.restaurants = restaurants;
     }
 
     public String getName() {
@@ -102,7 +88,6 @@ public class Customer {
         return "Customer{" +
                 "customerId=" + customerId +
                 //", orders=" + orders +
-                //", restaurants=" + restaurants +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", age=" + age +

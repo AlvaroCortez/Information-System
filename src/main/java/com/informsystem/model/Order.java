@@ -1,7 +1,9 @@
 package com.informsystem.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Den on 15.02.16.
@@ -20,6 +22,9 @@ public class Order {
     @JoinColumn(name = "CUSTOMER_ID", foreignKey = @ForeignKey(name = "RefORDtoCUS"))
     private Customer customer;
 
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderLine> orderLineList = new ArrayList<OrderLine>();
+
     @Column(name = "DATE_OF_ORDER")
     @Temporal(TemporalType.DATE)
     private Date dateOfOrder;
@@ -27,8 +32,8 @@ public class Order {
     @Column(name = "NUMBER_OF_PRODUCTS")
     private Integer numberOfProducts;
 
-    @Column(name = "ORDER_AMOUNT")
-    private Integer orderAmount;
+    @Column(name = "COST")
+    private Integer cost;
 
     public Integer getOrderId() {
         return orderId;
@@ -62,12 +67,12 @@ public class Order {
         this.numberOfProducts = numberOfProducts;
     }
 
-    public Integer getOrderAmount() {
-        return orderAmount;
+    public Integer getCost() {
+        return cost;
     }
 
-    public void setOrderAmount(Integer orderAmount) {
-        this.orderAmount = orderAmount;
+    public void setCost(Integer cost) {
+        this.cost = cost;
     }
 
     @Override
@@ -77,7 +82,7 @@ public class Order {
                 //", customer=" + customer.toString() +
                 ", dateOfOrder=" + dateOfOrder +
                 ", numberOfProducts=" + numberOfProducts +
-                ", orderAmount=" + orderAmount +
+                ", cost=" + cost +
                 '}';
     }
 }
