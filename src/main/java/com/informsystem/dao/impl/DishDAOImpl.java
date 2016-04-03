@@ -1,16 +1,21 @@
-package com.informsystem.dao;
+package com.informsystem.dao.impl;
 
+import com.informsystem.dao.DishDAO;
 import com.informsystem.model.Dish;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * Created by Den on 21.03.16.
  */
-public class DishDAOImpl implements DishDAO{
+@Repository("dishDAO")
+public class DishDAOImpl implements DishDAO {
 
+    @Autowired
     private SessionFactory sessionFactory;
 
     public void saveDish(Dish dish) {

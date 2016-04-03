@@ -1,20 +1,29 @@
-package com.informsystem.dao;
+package com.informsystem.dao.impl;
 
+import com.informsystem.dao.CustomerDAO;
 import com.informsystem.model.Customer;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * Created by Den on 21.03.16.
  */
-public class CustomerDAOImpl implements CustomerDAO{
+@Repository("customerDAO")
+public class CustomerDAOImpl implements CustomerDAO {
 
+    @Autowired
     private SessionFactory sessionFactory;
 
     public void saveCustomer(Customer customer) {
         getCurrentSession().save(customer);
+    }
+
+    public void saveOrUpdateCustomer(Customer customer){
+        getCurrentSession().saveOrUpdate(customer);
     }
 
     public void updateCustomer(Customer customer) {
@@ -34,6 +43,10 @@ public class CustomerDAOImpl implements CustomerDAO{
         if(customer != null){
             getCurrentSession().delete(customer);
         }
+    }
+
+    public void deleteCustomer(Customer customer){
+        getCurrentSession().delete(customer);
     }
 
     public Customer getCustomer(int customerID) {

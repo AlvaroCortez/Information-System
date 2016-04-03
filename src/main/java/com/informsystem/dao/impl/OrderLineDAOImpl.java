@@ -1,16 +1,21 @@
-package com.informsystem.dao;
+package com.informsystem.dao.impl;
 
+import com.informsystem.dao.OrderLineDAO;
 import com.informsystem.model.OrderLine;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * Created by Den on 21.03.16.
  */
-public class OrderLineDAOImpl implements OrderLineDAO{
+@Repository("orderLineDAO")
+public class OrderLineDAOImpl implements OrderLineDAO {
 
+    @Autowired
     private SessionFactory sessionFactory;
 
     public void saveOrderLine(OrderLine orderLine) {
