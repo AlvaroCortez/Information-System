@@ -2,17 +2,17 @@ package com.informsystem.dao.impl;
 
 import com.informsystem.dao.CustomerDAO;
 import com.informsystem.model.Customer;
+import com.vaadin.spring.annotation.SpringComponent;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * Created by Den on 21.03.16.
  */
-@Repository("customerDAO")
+@SpringComponent
 public class CustomerDAOImpl implements CustomerDAO {
 
     @Autowired

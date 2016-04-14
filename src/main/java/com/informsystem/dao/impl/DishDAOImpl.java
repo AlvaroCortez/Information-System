@@ -2,17 +2,17 @@ package com.informsystem.dao.impl;
 
 import com.informsystem.dao.DishDAO;
 import com.informsystem.model.Dish;
+import com.vaadin.spring.annotation.SpringComponent;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * Created by Den on 21.03.16.
  */
-@Repository("dishDAO")
+@SpringComponent
 public class DishDAOImpl implements DishDAO {
 
     @Autowired
@@ -20,6 +20,10 @@ public class DishDAOImpl implements DishDAO {
 
     public void saveDish(Dish dish) {
         getCurrentSession().save(dish);
+    }
+
+    public void saveOrUpdateDish(Dish dish){
+        getCurrentSession().saveOrUpdate(dish);
     }
 
     public void updateDish(Dish dish) {
@@ -36,6 +40,10 @@ public class DishDAOImpl implements DishDAO {
         if(dish != null){
             getCurrentSession().delete(dish);
         }
+    }
+
+    public void deleteDish(Dish dish){
+        getCurrentSession().delete(dish);
     }
 
     public Dish getDish(int dishID) {

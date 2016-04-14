@@ -3,6 +3,7 @@ package com.informsystem.model;
 import org.hibernate.annotations.Check;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "CUSTOMER")
-public class Customer {
+public class Customer implements Serializable, Cloneable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_sequence")
@@ -83,15 +84,40 @@ public class Customer {
         this.sex = sex;
     }
 
+    public boolean isPersisted() {
+        return customerId != null;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (this.customerId == null) {
+            return false;
+        }
+
+        if (obj instanceof Customer && obj.getClass().equals(getClass())) {
+            return this.customerId.equals(((Customer) obj).customerId);
+        }
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 43 * hash + (customerId == null ? 0 : customerId.hashCode());
+        return hash;
+    }
+
+    @Override
+    public Customer clone() throws CloneNotSupportedException {
+        return (Customer) super.clone();
+    }
+
     @Override
     public String toString() {
-        return "Customer{" +
-                "customerId=" + customerId +
-                //", orders=" + orders +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", age=" + age +
-                ", sex=" + sex +
-                '}';
+        return name + " " + surname;
     }
 }

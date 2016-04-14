@@ -10,6 +10,8 @@ import java.util.List;
 /**
  * Created by Den on 04.04.16.
  */
+//@SpringComponent
+//@UIScope
 @Service("orderService")
 public class OrderService {
 

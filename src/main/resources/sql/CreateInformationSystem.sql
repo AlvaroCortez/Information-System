@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS "customer_restaurant" CASCADE ;
 DROP TABLE IF EXISTS "restaurant";
 DROP TABLE IF EXISTS "customer" CASCADE;
-DROP TABLE IF EXISTS "orders";
+DROP TABLE IF EXISTS "orders" CASCADE;
 DROP SEQUENCE IF EXISTS order_sequence;
 DROP SEQUENCE IF EXISTS customer_sequence;
 DROP SEQUENCE IF EXISTS order_line_sequence;
@@ -100,6 +100,10 @@ CACHE 1;
 --
 INSERT INTO "customer" VALUES (1, 'Dmitry', 'Kluev', 21, 'M');
 INSERT INTO "customer" VALUES (2, 'Egor', 'Kulikov', 18, 'M');
+INSERT INTO "customer" VALUES (3, 'Evgen', 'Comedian', 23, 'M');
+INSERT INTO "customer" VALUES (4, 'Alvaro', 'Cortez', 25,'M');
+INSERT INTO "customer" VALUES (5, 'Nico', 'Belucci', 19, 'M');
+INSERT INTO "customer" VALUES (6, 'Alisa', 'Mirror', 18, 'F');
 --
 --INSERT: ORDER
 --
@@ -110,6 +114,7 @@ INSERT INTO "orders" VALUES (2, 2, '01.01.16', 18, 3800);
 --
 INSERT INTO "dish" VALUES (1, 'Sup', 10);
 INSERT INTO "dish" VALUES (2, 'Shit', 5);
+INSERT INTO "dish" VALUES (3, 'Pizza', 50);
 --
 --INSERT: CUSTOMER_RESTAURANT
 --
