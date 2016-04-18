@@ -2,6 +2,7 @@ package com.informsystem.vaadin;
 
 import com.informsystem.view.CustomerView;
 import com.informsystem.view.DishView;
+import com.informsystem.view.OrderView;
 import com.vaadin.navigator.View;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.server.Resource;
@@ -11,7 +12,8 @@ import com.vaadin.server.Resource;
  */
 public enum DashboardViewType {
     CUSTOMER("customer", CustomerView.class, FontAwesome.HOME, true),
-    DISH("dish", DishView.class, FontAwesome.FUTBOL_O, true)
+    DISH("dish", DishView.class, FontAwesome.FUTBOL_O, true),
+    ORDER("order",OrderView.class, FontAwesome.REORDER, true)
     ;
 
     private final String viewName;

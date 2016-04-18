@@ -25,7 +25,6 @@ public class CustomerService {
 
     private static final Logger LOGGER = Logger.getLogger(CustomerService.class.getName());
 
-
     @Transactional(propagation = Propagation.REQUIRED)
     public synchronized List<Customer> findAll(String stringFilter) {
         List<Customer> customers = new ArrayList<>();

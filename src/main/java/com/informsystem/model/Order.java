@@ -1,6 +1,7 @@
 package com.informsystem.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "ORDERS")
-public class Order {
+public class Order implements Serializable, Cloneable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_sequence")
@@ -32,7 +33,8 @@ public class Order {
     @Column(name = "NUMBER_OF_PRODUCTS")
     private Integer numberOfProducts;
 
-    @Column(name = "COST")
+    //@Column(name = "COST")
+    @Transient
     private Integer cost;
 
     public Integer getOrderId() {
@@ -73,6 +75,46 @@ public class Order {
 
     public void setCost(Integer cost) {
         this.cost = cost;
+    }
+
+    public List<OrderLine> getOrderLineList() {
+        return orderLineList;
+    }
+
+    public void setOrderLineList(List<OrderLine> orderLineList) {
+        this.orderLineList = orderLineList;
+    }
+
+    public boolean isPersisted() {
+        return orderId != null;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (this.orderId == null) {
+            return false;
+        }
+
+        if (obj instanceof Order && obj.getClass().equals(getClass())) {
+            return this.orderId.equals(((Order) obj).orderId);
+        }
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 43 * hash + (orderId == null ? 0 : orderId.hashCode());
+        return hash;
+    }
+
+    @Override
+    public Order clone() throws CloneNotSupportedException {
+        return (Order) super.clone();
     }
 
     @Override

@@ -8,7 +8,6 @@ import com.vaadin.spring.annotation.EnableVaadin;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.spring.navigator.SpringViewProvider;
 import com.vaadin.spring.server.SpringVaadinServlet;
-import com.vaadin.ui.Button;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.themes.ValoTheme;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,15 +62,15 @@ public class MyUI extends UI {
 //        navigator.addProvider(viewProvider);
     }
 
-    private Button createNavigationButton(String caption, final String viewName) {
-        Button button = new Button(caption);
-        button.addStyleName(ValoTheme.BUTTON_SMALL);
-        // If you didn't choose Java 8 when creating the project, convert this
-        // to an anonymous listener class
-        button.addClickListener(event -> getUI().getNavigator().navigateTo(
-                viewName));
-        return button;
-    }
+//    private Button createNavigationButton(String caption, final String viewName) {
+//        Button button = new Button(caption);
+//        button.addStyleName(ValoTheme.BUTTON_SMALL);
+//        // If you didn't choose Java 8 when creating the project, convert this
+//        // to an anonymous listener class
+//        button.addClickListener(event -> getUI().getNavigator().navigateTo(
+//                viewName));
+//        return button;
+//    }
 
     @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
     //@VaadinServletConfiguration(ui = MyUI.class, productionMode = false)

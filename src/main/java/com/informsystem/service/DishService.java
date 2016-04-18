@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 public class DishService {
 
     @Autowired
-    DishDAOImpl dishDAO;
+    private DishDAOImpl dishDAO;
 
     private static final Logger LOGGER = Logger.getLogger(DishService.class.getName());
 

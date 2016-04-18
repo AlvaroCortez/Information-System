@@ -69,6 +69,7 @@ public class CustomerForm extends FormLayout implements View{//extends CustomerF
         addComponents(fullNameCustomer, age, sex, buttons);
         save.setClickShortcut(ShortcutAction.KeyCode.ENTER);
         save.setStyleName(ValoTheme.BUTTON_PRIMARY);
+        delete.setStyleName(ValoTheme.BUTTON_DANGER);
         save.addClickListener(e -> this.save());
         delete.addClickListener(e -> this.delete());
     }

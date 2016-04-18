@@ -20,7 +20,7 @@ public class Customer implements Serializable, Cloneable{
     @Column(name = "CUSTOMER_ID")
     private Integer customerId;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true, targetEntity = Order.class)
     private List<Order> orders = new ArrayList<Order>();
 
     @Column(name = "NAME")

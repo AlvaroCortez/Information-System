@@ -1,13 +1,14 @@
 package com.informsystem.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Den on 21.03.16.
  */
 @Entity
 @Table(name = "ORDER_LINE")
-public class OrderLine {
+public class OrderLine  implements Serializable, Cloneable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_line_sequence")
@@ -26,8 +27,8 @@ public class OrderLine {
     @Column(name = "COUNT")
     private Integer count;
 
-    @Column(name = "COST")
-    private Integer cost;
+//    @Column(name = "COST")
+//    private Integer cost;
 
     public Integer getOrderLineId() {
         return orderLineId;
@@ -61,12 +62,44 @@ public class OrderLine {
         this.count = count;
     }
 
-    public Integer getCost() {
-        return cost;
+//    public Integer getCost() {
+//        return cost;
+//    }
+//
+//    public void setCost(Integer cost) {
+//        this.cost = cost;
+//    }
+
+    public boolean isPersisted() {
+        return orderLineId != null;
     }
 
-    public void setCost(Integer cost) {
-        this.cost = cost;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (this.orderLineId == null) {
+            return false;
+        }
+
+        if (obj instanceof OrderLine && obj.getClass().equals(getClass())) {
+            return this.orderLineId.equals(((OrderLine) obj).orderLineId);
+        }
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 43 * hash + (orderLineId == null ? 0 : orderLineId.hashCode());
+        return hash;
+    }
+
+    @Override
+    public OrderLine clone() throws CloneNotSupportedException {
+        return (OrderLine) super.clone();
     }
 
     @Override
@@ -74,7 +107,7 @@ public class OrderLine {
         return "OrderLine{" +
                 "orderLineId=" + orderLineId +
                 ", count=" + count +
-                ", cost=" + cost +
+//                ", cost=" + cost +
                 '}';
     }
 }

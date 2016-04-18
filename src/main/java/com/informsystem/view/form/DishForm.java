@@ -27,7 +27,7 @@ import javax.annotation.PostConstruct;
 public class DishForm extends FormLayout implements View{
 
     @Autowired
-    DishService service;
+    private DishService service;
     private Dish dish;
     private MyUI myUI;
     private DishView dishLayout;
@@ -48,6 +48,7 @@ public class DishForm extends FormLayout implements View{
         addComponents(fullNameDish, buttons);
         save.setClickShortcut(ShortcutAction.KeyCode.ENTER);
         save.setStyleName(ValoTheme.BUTTON_PRIMARY);
+        delete.setStyleName(ValoTheme.BUTTON_DANGER);
         save.addClickListener(e -> this.save());
         delete.addClickListener(e -> this.delete());
     }
