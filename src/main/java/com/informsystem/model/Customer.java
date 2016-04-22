@@ -20,7 +20,7 @@ public class Customer implements Serializable, Cloneable{
     @Column(name = "CUSTOMER_ID")
     private Integer customerId;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true, targetEntity = Order.class)
+    @OneToMany(mappedBy = "customer", /*cascade = CascadeType.ALL,*/ orphanRemoval = true, targetEntity = Order.class)
     private List<Order> orders = new ArrayList<Order>();
 
     @Column(name = "NAME")
@@ -88,28 +88,28 @@ public class Customer implements Serializable, Cloneable{
         return customerId != null;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (this.customerId == null) {
-            return false;
-        }
+//    @Override
+//    public boolean equals(Object obj) {
+//        if (this == obj) {
+//            return true;
+//        }
+//        if (this.customerId == null) {
+//            return false;
+//        }
+//
+//        if (obj instanceof Customer && obj.getClass().equals(getClass())) {
+//            return this.customerId.equals(((Customer) obj).customerId);
+//        }
+//
+//        return false;
+//    }
 
-        if (obj instanceof Customer && obj.getClass().equals(getClass())) {
-            return this.customerId.equals(((Customer) obj).customerId);
-        }
-
-        return false;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 43 * hash + (customerId == null ? 0 : customerId.hashCode());
-        return hash;
-    }
+//    @Override
+//    public int hashCode() {
+//        int hash = 5;
+//        hash = 43 * hash + (customerId == null ? 0 : customerId.hashCode());
+//        return hash;
+//    }
 
     @Override
     public Customer clone() throws CloneNotSupportedException {

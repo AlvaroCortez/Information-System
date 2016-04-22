@@ -19,7 +19,7 @@ public class Order implements Serializable, Cloneable{
     @Column(name = "ORDER_ID")
     private Integer orderId;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(/*cascade = CascadeType.ALL,*/ fetch = FetchType.LAZY)
     @JoinColumn(name = "CUSTOMER_ID", foreignKey = @ForeignKey(name = "RefORDtoCUS"))
     private Customer customer;
 
@@ -89,28 +89,28 @@ public class Order implements Serializable, Cloneable{
         return orderId != null;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (this.orderId == null) {
-            return false;
-        }
+//    @Override
+//    public boolean equals(Object obj) {
+//        if (this == obj) {
+//            return true;
+//        }
+//        if (this.orderId == null) {
+//            return false;
+//        }
+//
+//        if (obj instanceof Order && obj.getClass().equals(getClass())) {
+//            return this.orderId.equals(((Order) obj).orderId);
+//        }
+//
+//        return false;
+//    }
 
-        if (obj instanceof Order && obj.getClass().equals(getClass())) {
-            return this.orderId.equals(((Order) obj).orderId);
-        }
-
-        return false;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 43 * hash + (orderId == null ? 0 : orderId.hashCode());
-        return hash;
-    }
+//    @Override
+//    public int hashCode() {
+//        int hash = 5;
+//        hash = 43 * hash + (orderId == null ? 0 : orderId.hashCode());
+//        return hash;
+//    }
 
     @Override
     public Order clone() throws CloneNotSupportedException {

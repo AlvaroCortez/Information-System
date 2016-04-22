@@ -30,6 +30,7 @@ public class DishService {
         List<Dish> dishes = new ArrayList<>();
         for (Dish dish : dishDAO.getAllDishes()) {
             try {
+                //TODO something wrong with filter
                 boolean passesFilter = (stringFilter == null || stringFilter.isEmpty())
                         || dish.toString().toLowerCase().contains(stringFilter.toLowerCase());
                 if (passesFilter) {

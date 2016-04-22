@@ -40,7 +40,8 @@ public class OrderDAOImpl implements OrderDAO {
             orderToUpdate.setDateOfOrder(order.getDateOfOrder());
             orderToUpdate.setNumberOfProducts(order.getNumberOfProducts());
             orderToUpdate.setCost(order.getCost());
-            //getCurrentSession().update(orderToUpdate);
+            //getCurrentSession().flush();
+            getCurrentSession().update(orderToUpdate);
         }
     }
 

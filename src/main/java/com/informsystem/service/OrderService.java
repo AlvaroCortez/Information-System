@@ -2,6 +2,7 @@ package com.informsystem.service;
 
 import com.informsystem.dao.impl.OrderDAOImpl;
 import com.informsystem.model.Order;
+import com.informsystem.model.OrderLine;
 import com.vaadin.spring.annotation.SpringComponent;
 import com.vaadin.spring.annotation.ViewScope;
 import org.hibernate.Hibernate;
@@ -30,16 +31,20 @@ public class OrderService {
     public synchronized List<Order> findAll(String stringFilter) {
         List<Order> orders = new ArrayList<>();
         for (Order order : orderDAO.getAllOrders()) {
-            try {
+            //try {
                 //TODO need to change filter
                 boolean passesFilter = (stringFilter == null || stringFilter.isEmpty())
                         || order.toString().toLowerCase().contains(stringFilter.toLowerCase());
                 if (passesFilter) {
                     Hibernate.initialize(order.getCustomer());
-                    orders.add(order.clone());
+                    Hibernate.initialize(order.getOrderLineList());
+                    for (OrderLine orderLine : order.getOrderLineList()) {
+                        Hibernate.initialize(orderLine.getDish());
+                    }
+                    orders.add(order);//.clone());
                 }
-            } catch (CloneNotSupportedException ex) {
-            }
+//            } catch (CloneNotSupportedException ex) {
+//            }
         }
         return orders;
     }

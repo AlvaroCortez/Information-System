@@ -10,10 +10,7 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.spring.annotation.SpringComponent;
 import com.vaadin.spring.annotation.UIScope;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.FormLayout;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.TextField;
+import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -43,8 +40,14 @@ public class DishForm extends FormLayout implements View{
         buttons.setSpacing(true);
         HorizontalLayout fullNameDish = new HorizontalLayout(name, cost);
         //sex.addValidator(new StringLengthValidator("The sex must contains one char symbol: M or F",1,1,true));
+        //name.setNullSettingAllowed(false);
+        name.setImmediate(true);
         name.setNullRepresentation("");
+        //name.setValue("");
+        //cost.setNullSettingAllowed(false);
+        cost.setImmediate(true);
         cost.setNullRepresentation("");
+        //cost.setValue("0");
         addComponents(fullNameDish, buttons);
         save.setClickShortcut(ShortcutAction.KeyCode.ENTER);
         save.setStyleName(ValoTheme.BUTTON_PRIMARY);
@@ -83,9 +86,13 @@ public class DishForm extends FormLayout implements View{
     }
 
     private void save() {
-        service.save(dish);
-        dishLayout.updateList();
-        setVisible(false);
+        if (dish.getName() == null){
+            Notification.show("You need to write name");
+        } else {
+            service.save(dish);
+            dishLayout.updateList();
+            setVisible(false);
+        }
     }
 
     public MyUI getMyUI() {

@@ -48,11 +48,8 @@ public class DishView extends /*Panel*/VerticalLayout implements View {
     @PostConstruct
     public void init(){
         addStyleName(ValoTheme.PANEL_BORDERLESS);
-        setSizeFull();
-        //root = new VerticalLayout();
-        //setSizeFull();
         setMargin(true);
-        //setContent(root);
+        setSpacing(true);
 
         HorizontalLayout header = new HorizontalLayout();
         header.addStyleName("viewheader");
@@ -102,6 +99,8 @@ public class DishView extends /*Panel*/VerticalLayout implements View {
         main.setExpandRatio(grid, 1);
 
         addComponents(toolbar, main);
+        setComponentAlignment(toolbar, Alignment.TOP_LEFT);
+        setComponentAlignment(main, Alignment.TOP_LEFT);
 
         updateList();
 
@@ -115,10 +114,6 @@ public class DishView extends /*Panel*/VerticalLayout implements View {
                 form.setDish(dish);
             }
         });
-        //root.setMargin(true);
-        //root.setSpacing(true);
-        //setContent(layout);
-
     }
 
     public void updateList() {

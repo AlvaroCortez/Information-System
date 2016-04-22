@@ -24,7 +24,7 @@ import java.util.List;
 //@SpringComponent
 //@UIScope
 @SpringView(name = "order")
-public class OrderView extends Panel /*VerticalLayout*/ implements View{
+public class OrderView extends VerticalLayout implements View{
 
     @Autowired
     private OrderLineForm form;
@@ -41,11 +41,9 @@ public class OrderView extends Panel /*VerticalLayout*/ implements View{
 
     @PostConstruct
     void init(){
-        setSizeFull();//not know
         addStyleName(ValoTheme.PANEL_BORDERLESS);
-        VerticalLayout layout = new VerticalLayout();
-        layout.setSizeFull();//not know
-        layout.setMargin(true);
+        setMargin(true);
+        setSpacing(true);
 
         HorizontalLayout header = new HorizontalLayout();
         header.addStyleName("viewheader");
@@ -57,9 +55,8 @@ public class OrderView extends Panel /*VerticalLayout*/ implements View{
         titleLabel.addStyleName(ValoTheme.LABEL_H1);
         titleLabel.addStyleName(ValoTheme.LABEL_NO_MARGIN);
         header.addComponent(titleLabel);
-        layout.addComponent(header);
+        addComponent(header);
 
-        //form.setMyUI();
         form.setOrderLayout(this);
 
         filterText.setInputPrompt("filter by name...");
@@ -95,13 +92,11 @@ public class OrderView extends Panel /*VerticalLayout*/ implements View{
         grid.setSizeFull();
         main.setExpandRatio(grid, 1);
 
-        layout.addComponents(toolbar, main);
+        addComponents(toolbar, main);
+        setComponentAlignment(toolbar, Alignment.TOP_LEFT);
+        setComponentAlignment(main, Alignment.TOP_LEFT);
 
         updateList();
-
-        //layout.setMargin(true);
-        //layout.setSpacing(true);
-        setContent(layout);
 
         form.setVisible(false);
 
@@ -113,8 +108,6 @@ public class OrderView extends Panel /*VerticalLayout*/ implements View{
                 form.setOrder(order, order.getOrderLineList());
             }
         });
-        //MainMenu mainMenu = new MainMenu();
-        //addComponent(mainMenu);
     }
 
     public void updateList() {

@@ -4,7 +4,9 @@ import com.informsystem.model.Customer;
 import com.informsystem.service.CustomerService;
 import com.informsystem.vaadin.MyUI;
 import com.informsystem.view.CustomerView;
+import com.vaadin.data.Validator;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
+import com.vaadin.data.validator.IntegerRangeValidator;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
@@ -25,7 +27,6 @@ public class CustomerForm extends FormLayout implements View{//extends CustomerF
 
     public static final String VIEW_NAME = "view";
 
-//    CustomerService service = CustomerService.getInstance();
     @Autowired
     CustomerService service;
     private Customer customer;
@@ -39,19 +40,6 @@ public class CustomerForm extends FormLayout implements View{//extends CustomerF
     private Button save = new Button("Save");
     private Button delete = new Button("Delete");
 
-//    public CustomerForm(MyUI myUI) {
-//        this.myUI = myUI;
-//        //status.addItems(CustomerStatus.values());
-//        setSizeUndefined();
-//        HorizontalLayout buttons = new HorizontalLayout(save, delete);
-//        buttons.setSpacing(true);
-//        addComponents(name, surname, age, buttons);
-//        save.setClickShortcut(KeyCode.ENTER);
-//        save.setStyleName(ValoTheme.BUTTON_PRIMARY);
-//        save.addClickListener(e -> this.save());
-//        delete.addClickListener(e -> this.delete());
-//    }
-
     @PostConstruct
     void init(){
         setSizeUndefined();
@@ -60,10 +48,18 @@ public class CustomerForm extends FormLayout implements View{//extends CustomerF
         HorizontalLayout fullNameCustomer = new HorizontalLayout(name, surname);
         //sex.addValidator(new StringLengthValidator("The sex must contains one char symbol: M or F",1,1,true));
         sex.addItems('M', 'F');
+        sex.setRequired(true);
+        sex.setRequiredError("Choose sex of customer");
+        sex.setImmediate(true);
         sex.addStyleName("horizontal");
         sex.setNullSelectionAllowed(false);
-        sex.select(0);
-        age.setNullRepresentation("0");
+        //sex.setValue('M');
+        //sex.select(0);
+        age.setRequired(true);
+        age.setRequiredError("Enter age please");
+        age.setImmediate(true);
+        age.addValidator(new IntegerRangeValidator("The age must between 0-120 (was {0})", 0, 120));
+        age.setNullRepresentation("");
         name.setNullRepresentation("");
         surname.setNullRepresentation("");
         addComponents(fullNameCustomer, age, sex, buttons);
@@ -104,9 +100,21 @@ public class CustomerForm extends FormLayout implements View{//extends CustomerF
     }
 
     private void save() {
-        service.save(customer);
-        customerLayout.updateList();
-        setVisible(false);
+        try {
+            age.validate();
+            sex.validate();
+            if (customer.getName() == null || customer.getSurname() == null) {
+                Notification.show("You new to write full name of customer");
+            } else if (sex.getValue().equals('\u0000')) {
+                Notification.show("You need to choose sex of customer");
+            } else {
+                service.save(customer);
+                customerLayout.updateList();
+                setVisible(false);
+            }
+        } catch (Validator.InvalidValueException e){
+            Notification.show(e.getMessage());
+        }
     }
 
     public MyUI getMyUI() {
