@@ -12,15 +12,15 @@ public class OrderLine  implements Serializable, Cloneable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_line_sequence")
-    @SequenceGenerator(name = "order_line_sequence", sequenceName = "order_line_sequence")
+    @SequenceGenerator(name = "order_line_sequence", sequenceName = "order_line_sequence", allocationSize = 1)
     @Column(name = "ORDER_LINE_ID")
     private Integer orderLineId;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(/*cascade = CascadeType.ALL, */fetch = FetchType.LAZY)
     @JoinColumn(name = "ORDER_ID", foreignKey = @ForeignKey(name = "RefOLtoORD"))
     private Order order;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(/*cascade = CascadeType.ALL,*/ fetch = FetchType.LAZY)
     @JoinColumn(name = "DISH_ID", foreignKey = @ForeignKey(name = "RefOLtoDISH"))
     private Dish dish;
 
@@ -73,34 +73,34 @@ public class OrderLine  implements Serializable, Cloneable{
     public boolean isPersisted() {
         return orderLineId != null;
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (this.orderLineId == null) {
-            return false;
-        }
-
-        if (obj instanceof OrderLine && obj.getClass().equals(getClass())) {
-            return this.orderLineId.equals(((OrderLine) obj).orderLineId);
-        }
-
-        return false;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 43 * hash + (orderLineId == null ? 0 : orderLineId.hashCode());
-        return hash;
-    }
-
-    @Override
-    public OrderLine clone() throws CloneNotSupportedException {
-        return (OrderLine) super.clone();
-    }
+//
+//    @Override
+//    public boolean equals(Object obj) {
+//        if (this == obj) {
+//            return true;
+//        }
+//        if (this.orderLineId == null) {
+//            return false;
+//        }
+//
+//        if (obj instanceof OrderLine && obj.getClass().equals(getClass())) {
+//            return this.orderLineId.equals(((OrderLine) obj).orderLineId);
+//        }
+//
+//        return false;
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        int hash = 5;
+//        hash = 43 * hash + (orderLineId == null ? 0 : orderLineId.hashCode());
+//        return hash;
+//    }
+//
+//    @Override
+//    public OrderLine clone() throws CloneNotSupportedException {
+//        return (OrderLine) super.clone();
+//    }
 
     @Override
     public String toString() {

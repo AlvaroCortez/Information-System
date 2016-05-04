@@ -23,7 +23,11 @@ public class DishDAOImpl implements DishDAO {
     }
 
     public void saveOrUpdateDish(Dish dish){
-        getCurrentSession().saveOrUpdate(dish);
+        if(getCurrentSession().contains(dish)){
+            getCurrentSession().merge(dish);
+        } else {
+            getCurrentSession().saveOrUpdate(dish);
+        }
     }
 
     public void updateDish(Dish dish) {

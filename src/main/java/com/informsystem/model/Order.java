@@ -111,11 +111,11 @@ public class Order implements Serializable, Cloneable{
 //        hash = 43 * hash + (orderId == null ? 0 : orderId.hashCode());
 //        return hash;
 //    }
-
-    @Override
-    public Order clone() throws CloneNotSupportedException {
-        return (Order) super.clone();
-    }
+//
+//    @Override
+//    public Order clone() throws CloneNotSupportedException {
+//        return (Order) super.clone();
+//    }
 
     @Override
     public String toString() {

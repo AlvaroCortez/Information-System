@@ -145,19 +145,21 @@ public final class DashboardMenu extends CustomComponent {
 //                menuItemComponent = reports;
 //            }
 
-            if (view == DashboardViewType.CUSTOMER) {
-                notificationsBadge = new Label();
-                notificationsBadge.setId(NOTIFICATIONS_BADGE_ID);
-                menuItemComponent = buildBadgeWrapper(menuItemComponent,
-                        notificationsBadge);
-            }
+//            if (view == DashboardViewType.CUSTOMER) {
+//                notificationsBadge = new Label();
+//                notificationsBadge.setId(NOTIFICATIONS_BADGE_ID);
+//                menuItemComponent = buildBadgeWrapper(menuItemComponent,
+//                        notificationsBadge);
+//            }
 //            if (view == DashboardViewType.REPORTS) {
 //                reportsBadge = new Label();
 //                reportsBadge.setId(REPORTS_BADGE_ID);
 //                menuItemComponent = buildBadgeWrapper(menuItemComponent,
 //                        reportsBadge);
 //            }
-
+            if(view == DashboardViewType.START){
+                continue;
+            }
             menuItemsLayout.addComponent(menuItemComponent);
         }
         return menuItemsLayout;

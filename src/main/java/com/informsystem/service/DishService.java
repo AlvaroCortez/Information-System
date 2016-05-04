@@ -29,15 +29,15 @@ public class DishService {
     public synchronized List<Dish> findAll(String stringFilter) {
         List<Dish> dishes = new ArrayList<>();
         for (Dish dish : dishDAO.getAllDishes()) {
-            try {
+//            try {
                 //TODO something wrong with filter
                 boolean passesFilter = (stringFilter == null || stringFilter.isEmpty())
                         || dish.toString().toLowerCase().contains(stringFilter.toLowerCase());
                 if (passesFilter) {
-                    dishes.add(dish.clone());
+                    dishes.add(dish);
                 }
-            } catch (CloneNotSupportedException ex) {
-            }
+//            } catch (CloneNotSupportedException ex) {
+//            }
         }
         return dishes;
     }
@@ -55,5 +55,10 @@ public class DishService {
     @Transactional(propagation = Propagation.REQUIRED)
     public synchronized void delete(Dish value) {
         dishDAO.deleteDish(value.getDishId());
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public synchronized void getDish(int dishID){
+        dishDAO.getDish(dishID);
     }
 }

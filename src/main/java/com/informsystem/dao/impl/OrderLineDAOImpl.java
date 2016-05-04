@@ -6,7 +6,6 @@ import com.vaadin.spring.annotation.SpringComponent;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -24,7 +23,11 @@ public class OrderLineDAOImpl implements OrderLineDAO {
     }
 
     public void saveOrUpdateOrderLine(OrderLine orderLine){
-        getCurrentSession().saveOrUpdate(orderLine);
+        if(getCurrentSession().contains(orderLine)){
+            getCurrentSession().merge(orderLine);
+        } else {
+            getCurrentSession().saveOrUpdate(orderLine);
+        }
     }
 
     public void updateOrderLine(OrderLine orderLine) {

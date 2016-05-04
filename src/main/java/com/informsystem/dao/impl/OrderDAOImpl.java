@@ -23,7 +23,11 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     public void saveOrUpdateOrder(Order order){
-        getCurrentSession().saveOrUpdate(order);
+        if(getCurrentSession().contains(order)){
+            getCurrentSession().merge(order);
+        } else {
+            getCurrentSession().saveOrUpdate(order);
+        }
     }
 
     public void updateOrder(Order order) {

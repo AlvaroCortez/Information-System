@@ -29,14 +29,14 @@ public class CustomerService {
     public synchronized List<Customer> findAll(String stringFilter) {
         List<Customer> customers = new ArrayList<>();
         for (Customer contact : customerDAO.getAllCustomers()) {
-            try {
+//            try {
                 boolean passesFilter = (stringFilter == null || stringFilter.isEmpty())
                         || contact.toString().toLowerCase().contains(stringFilter.toLowerCase());
                 if (passesFilter) {
-                    customers.add(contact.clone());
+                    customers.add(contact);
                 }
-            } catch (CloneNotSupportedException ex) {
-            }
+//            } catch (CloneNotSupportedException ex) {
+//            }
         }
 //        Collections.sort(arrayList, new Comparator<Customer>() {
 //

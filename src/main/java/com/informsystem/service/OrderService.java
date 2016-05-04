@@ -32,6 +32,7 @@ public class OrderService {
         List<Order> orders = new ArrayList<>();
         for (Order order : orderDAO.getAllOrders()) {
             //try {
+            Integer cost = 0;
                 //TODO need to change filter
                 boolean passesFilter = (stringFilter == null || stringFilter.isEmpty())
                         || order.toString().toLowerCase().contains(stringFilter.toLowerCase());
@@ -40,7 +41,9 @@ public class OrderService {
                     Hibernate.initialize(order.getOrderLineList());
                     for (OrderLine orderLine : order.getOrderLineList()) {
                         Hibernate.initialize(orderLine.getDish());
+                        cost += orderLine.getDish().getCost() * orderLine.getCount();
                     }
+                    order.setCost(cost);
                     orders.add(order);//.clone());
                 }
 //            } catch (CloneNotSupportedException ex) {

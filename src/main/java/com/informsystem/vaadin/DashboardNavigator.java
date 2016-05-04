@@ -17,7 +17,7 @@ public class DashboardNavigator extends Navigator {
     private static final String TRACKER_ID = null;// "UA-658457-6";
 //    private GoogleAnalyticsTracker tracker;
 
-    private static final DashboardViewType ERROR_VIEW = DashboardViewType.CUSTOMER;
+    private static final DashboardViewType ERROR_VIEW = DashboardViewType.START;
     private ViewProvider errorViewProvider;
 
     public DashboardNavigator(final ComponentContainer container, SpringViewProvider viewProvider) {
@@ -117,5 +117,6 @@ public class DashboardNavigator extends Navigator {
                 return errorViewProvider.getView(ERROR_VIEW.getViewName());
             }
         });
+        navigateTo("start");
     }
 }

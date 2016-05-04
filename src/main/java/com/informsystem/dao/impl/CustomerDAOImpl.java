@@ -23,7 +23,11 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     public void saveOrUpdateCustomer(Customer customer){
-        getCurrentSession().saveOrUpdate(customer);
+        if(getCurrentSession().contains(customer)){
+            getCurrentSession().merge(customer);
+        } else {
+            getCurrentSession().saveOrUpdate(customer);
+        }
     }
 
     public void updateCustomer(Customer customer) {

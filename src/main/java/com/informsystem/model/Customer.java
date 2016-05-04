@@ -110,11 +110,11 @@ public class Customer implements Serializable, Cloneable{
 //        hash = 43 * hash + (customerId == null ? 0 : customerId.hashCode());
 //        return hash;
 //    }
-
-    @Override
-    public Customer clone() throws CloneNotSupportedException {
-        return (Customer) super.clone();
-    }
+//
+//    @Override
+//    public Customer clone() throws CloneNotSupportedException {
+//        return (Customer) super.clone();
+//    }
 
     @Override
     public String toString() {

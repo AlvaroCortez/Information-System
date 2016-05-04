@@ -30,16 +30,16 @@ public class OrderLineService {
     public synchronized List<OrderLine> findAll(String stringFilter) {
         List<OrderLine> orderLines = new ArrayList<>();
         for (OrderLine orderLine : orderLineDAO.getAllOrderLines()) {
-            try {
+//            try {
                 //TODO need to change filter
                 boolean passesFilter = (stringFilter == null || stringFilter.isEmpty())
                         || orderLine.toString().toLowerCase().contains(stringFilter.toLowerCase());
                 if (passesFilter) {
                     Hibernate.initialize(orderLine.getDish());
-                    orderLines.add(orderLine.clone());
+                    orderLines.add(orderLine);
                 }
-            } catch (CloneNotSupportedException ex) {
-            }
+//            } catch (CloneNotSupportedException ex) {
+//            }
         }
         return orderLines;
     }

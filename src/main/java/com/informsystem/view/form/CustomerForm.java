@@ -60,8 +60,14 @@ public class CustomerForm extends FormLayout implements View{//extends CustomerF
         age.setImmediate(true);
         age.addValidator(new IntegerRangeValidator("The age must between 0-120 (was {0})", 0, 120));
         age.setNullRepresentation("");
+        name.setRequired(true);
+        name.setRequiredError("Enter name please");
+        name.setImmediate(true);
         name.setNullRepresentation("");
         surname.setNullRepresentation("");
+        surname.setRequired(true);
+        surname.setRequiredError("Enter surname please");
+        surname.setImmediate(true);
         addComponents(fullNameCustomer, age, sex, buttons);
         save.setClickShortcut(ShortcutAction.KeyCode.ENTER);
         save.setStyleName(ValoTheme.BUTTON_PRIMARY);

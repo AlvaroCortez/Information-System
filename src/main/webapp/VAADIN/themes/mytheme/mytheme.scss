@@ -31,6 +31,6 @@
 
 @mixin mytheme {
   @include valo;
-
+  ::-webkit-scrollbar-thumb
   // Insert your own theme rules here
 }
