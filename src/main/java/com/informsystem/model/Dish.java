@@ -50,34 +50,6 @@ public class Dish implements Serializable, Cloneable{
         return dishId != null;
     }
 
-//    @Override
-//    public boolean equals(Object obj) {
-//        if (this == obj) {
-//            return true;
-//        }
-//        if (this.dishId == null) {
-//            return false;
-//        }
-//
-//        if (obj instanceof Dish && obj.getClass().equals(getClass())) {
-//            return this.dishId.equals(((Dish) obj).dishId);
-//        }
-//
-//        return false;
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        int hash = 5;
-//        hash = 43 * hash + (dishId == null ? 0 : dishId.hashCode());
-//        return hash;
-//    }
-//
-//    @Override
-//    public Dish clone() throws CloneNotSupportedException {
-//        return (Dish) super.clone();
-//    }
-
     @Override
     public String toString() {
         return name;

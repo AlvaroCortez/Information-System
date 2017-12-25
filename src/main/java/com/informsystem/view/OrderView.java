@@ -21,8 +21,6 @@ import java.util.List;
 /**
  * Created by Den on 11.04.16.
  */
-//@SpringComponent
-//@UIScope
 @SpringView(name = "order")
 public class OrderView extends VerticalLayout implements View{
 

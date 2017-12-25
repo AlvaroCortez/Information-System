@@ -57,11 +57,7 @@ public class DishForm extends FormLayout implements View{
     }
 
     public void setDish(Dish dish) {
-        //if(dish == null){
-        //    dish = new Customer();
-        //} else {
         this.dish = dish;
-        //}
         BeanFieldGroup.bindFieldsUnbuffered(dish, this);
 
         // Show delete button for only customers already in the database
@@ -93,14 +89,6 @@ public class DishForm extends FormLayout implements View{
             dishLayout.updateList();
             setVisible(false);
         }
-    }
-
-    public MyUI getMyUI() {
-        return myUI;
-    }
-
-    public void setMyUI(MyUI myUI) {
-        this.myUI = myUI;
     }
 
     @Override

@@ -62,45 +62,9 @@ public class OrderLine  implements Serializable, Cloneable{
         this.count = count;
     }
 
-//    public Integer getCost() {
-//        return cost;
-//    }
-//
-//    public void setCost(Integer cost) {
-//        this.cost = cost;
-//    }
-
     public boolean isPersisted() {
         return orderLineId != null;
     }
-//
-//    @Override
-//    public boolean equals(Object obj) {
-//        if (this == obj) {
-//            return true;
-//        }
-//        if (this.orderLineId == null) {
-//            return false;
-//        }
-//
-//        if (obj instanceof OrderLine && obj.getClass().equals(getClass())) {
-//            return this.orderLineId.equals(((OrderLine) obj).orderLineId);
-//        }
-//
-//        return false;
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        int hash = 5;
-//        hash = 43 * hash + (orderLineId == null ? 0 : orderLineId.hashCode());
-//        return hash;
-//    }
-//
-//    @Override
-//    public OrderLine clone() throws CloneNotSupportedException {
-//        return (OrderLine) super.clone();
-//    }
 
     @Override
     public String toString() {

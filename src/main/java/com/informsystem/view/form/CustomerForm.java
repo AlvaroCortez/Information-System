@@ -20,12 +20,7 @@ import javax.annotation.PostConstruct;
 
 @SpringComponent
 @UIScope
-//@SpringUI
-//@SpringView(name = CustomerForm.VIEW_NAME)
-//@DesignRoot
 public class CustomerForm extends FormLayout implements View{//extends CustomerFormDesign {
-
-    public static final String VIEW_NAME = "view";
 
     @Autowired
     CustomerService service;
@@ -77,16 +72,11 @@ public class CustomerForm extends FormLayout implements View{//extends CustomerF
     }
 
     public void setCustomer(Customer customer) {
-        //if(customer == null){
-        //    customer = new Customer();
-        //} else {
-            this.customer = customer;
-        //}
+        this.customer = customer;
         BeanFieldGroup.bindFieldsUnbuffered(customer, this);
 
         // Show delete button for only customers already in the database
         delete.setVisible(customer.isPersisted());
-        //delete.setVisible(true);
         setVisible(true);
         name.selectAll();
     }
@@ -121,14 +111,6 @@ public class CustomerForm extends FormLayout implements View{//extends CustomerF
         } catch (Validator.InvalidValueException e){
             Notification.show(e.getMessage());
         }
-    }
-
-    public MyUI getMyUI() {
-        return myUI;
-    }
-
-    public void setMyUI(MyUI myUI) {
-        this.myUI = myUI;
     }
 
     @Override

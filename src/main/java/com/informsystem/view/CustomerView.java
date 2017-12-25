@@ -18,8 +18,6 @@ import java.util.List;
 /**
  * Created by Den on 11.04.16.
  */
-//@SpringComponent
-//@UIScope
 @SpringView(name = "customer")
 public class CustomerView extends VerticalLayout implements View{
 

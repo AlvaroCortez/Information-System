@@ -18,8 +18,6 @@ import java.util.List;
 /**
  * Created by Den on 13.04.16.
  */
-//@SpringComponent
-//@UIScope
 @SpringView(name = "dish")
 public class DishView extends /*Panel*/VerticalLayout implements View {
 
@@ -32,18 +30,8 @@ public class DishView extends /*Panel*/VerticalLayout implements View {
     private Grid grid = new Grid();
     private TextField filterText = new TextField();
 
-    //private VerticalLayout root;
     private Label titleLabel;
     public static final String TITLE_ID = "dashboard-title";
-
-//    public DishView(){
-//        addStyleName(ValoTheme.PANEL_BORDERLESS);
-//        setSizeFull();
-//        //root = new VerticalLayout();
-//        setSizeFull();
-//        setMargin(true);
-//        //setContent(root);
-//    }
 
     @PostConstruct
     public void init(){

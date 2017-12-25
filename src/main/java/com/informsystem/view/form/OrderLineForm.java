@@ -186,10 +186,10 @@ public class OrderLineForm extends FormLayout implements View, Scrollable {
         if (orderLines.size() == 0){
             Notification.show("Cannot create or update order without order lines");
         } else {
-            numberOfProductsInt = order.getNumberOfProducts();
-            if(numberOfProductsInt == null){
-                numberOfProductsInt = 0;
-            }
+            //numberOfProductsInt = order.getNumberOfProducts();
+            //if(numberOfProductsInt == null){
+            //    numberOfProductsInt = 0;
+            //}
             order.setOrderLineList(orderLines);
             for (OrderLine orderLine : orderLines) {
                 //orderLineService.save(orderLine);
@@ -250,11 +250,6 @@ public class OrderLineForm extends FormLayout implements View, Scrollable {
             count.setValue("");
             dish.setValue(null);
             selectedDish = null;
-//        try {
-//            grid.addRow(selectedDish, Integer.parseInt(count.getValue()));
-//        } catch (UnsupportedOperationException e){
-//
-//        }
         }
     }
 
